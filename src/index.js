@@ -1449,33 +1449,25 @@ self.CreateTextNode = (desiredText)=>{
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-self.gqlResourceDataToNode = (resource)=>{
-    const geoJsonRaw = resource.geocode.substring(3);
-    const geoJson = JSON.parse(atob(geoJsonRaw));
-
-    var node = {
+self.gqlResourceDataToNode = (resource) => {
+    const node = {
         "id": resource.id,
         "type": "dimo-node",
         "class": "[Resource]",
         "label": resource.name,
         "location": resource.location,
-        "lat": geoJson.o.lat,
-        "lng": geoJson.o.lng,
         "airtableURL": "https://airtable.com/tblAKJHMkBTTAbuXE/viwfjiEW7MrdgTysI/" + resource.id,
     };
+
+    const geocodeSuccess = "🔵 ";
+
+    if (resource.geocode && resource.geocode.startsWith(geocodeSuccess)) {
+	const geoJsonRaw = resource.geocode.substring(geocodeSuccess.length);
+	const geoJson = JSON.parse(atob(geoJsonRaw));
+
+        node.lat = geoJson.o.lat;
+        node.lng = geoJson.o.lng;
+    }
 
     if (resource.resource_resource_types.length) {
 
@@ -1983,6 +1975,12 @@ function maybeShowMap(model) {
             }
             const resource = data.resource[0];
             const resourceNode = self.gqlResourceDataToNode(resource);
+
+            if (!resourceNode.lat) {
+                alert("Resource has an invalid location, sorry!");
+		return;
+	    }
+
             self.mapModalOpen();
             self.mapHandle.invalidateSize(false);
             self.mapHandle.setView([resourceNode.lat, resourceNode.lng], 13);
