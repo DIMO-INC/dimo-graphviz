@@ -1462,8 +1462,8 @@ self.gqlResourceDataToNode = (resource) => {
     const geocodeSuccess = "🔵 ";
 
     if (resource.geocode && resource.geocode.startsWith(geocodeSuccess)) {
-	const geoJsonRaw = resource.geocode.substring(geocodeSuccess.length);
-	const geoJson = JSON.parse(atob(geoJsonRaw));
+        const geoJsonRaw = resource.geocode.substring(geocodeSuccess.length);
+        const geoJson = JSON.parse(atob(geoJsonRaw));
 
         node.lat = geoJson.o.lat;
         node.lng = geoJson.o.lng;
@@ -1978,8 +1978,8 @@ function maybeShowMap(model) {
 
             if (!resourceNode.lat) {
                 alert("Resource has an invalid location, sorry!");
-		return;
-	    }
+                return;
+            }
 
             self.mapModalOpen();
             self.mapHandle.invalidateSize(false);
