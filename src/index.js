@@ -2368,15 +2368,13 @@ function initGraphData() {
     self.loadDimoResource(vars["resource_id"], self.dimoGraphData.nodes, self.dimoGraphData.edges)
   } else if (vars["person_id"] != undefined) {
     self.loadDimoPerson(vars["person_id"], self.dimoGraphData.nodes, self.dimoGraphData.edges)
+  } else {
+    self.initGraph(self.dimoGraphData.nodes,self.dimoGraphData.edges);
+    self.searchModalOpen();
   }
 
 }
 
-self.dimoGraphData = { nodes: [], edges: [] };
-
-
-
-initGraphData();
 
 
 
@@ -3675,6 +3673,11 @@ if (typeof window !== "undefined")
 
 
 
+self.dimoGraphData = { nodes: [], edges: [] };
+
+
+
+initGraphData();
 
 
 
