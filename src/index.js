@@ -1031,6 +1031,14 @@ const showItems = (graph) => {
   graph.getNodes().forEach((node) => {
     if (!node.isVisible()) graph.showItem(node);
   });
+
+
+  graph.getEdges().forEach((edge) => {
+    if (!edge.isVisible()) graph.showItem(edge);
+
+  });
+
+
   hiddenItemIds = [];
 };
 
@@ -3131,6 +3139,9 @@ self.initGraph = (nodes_, edges_, useLayout=true)=>{
       },
       getContent(evt) {
         const { item } = evt;
+
+
+
         if (evt.target && evt.target.isCanvas && evt.target.isCanvas()) {
           return `<ul>
           <li id='show'>Show all Hidden Items</li>
@@ -3139,6 +3150,7 @@ self.initGraph = (nodes_, edges_, useLayout=true)=>{
         } else if (!item) return;
         const itemType = item.getType();
         const model = item.getModel();
+
         if (itemType && model) {
           if (itemType == "node") {
             if (model.class != "[Aggregate]" && model.class != "[Text]") {
@@ -3189,6 +3201,18 @@ self.initGraph = (nodes_, edges_, useLayout=true)=>{
             }
           }
         }
+
+        if (itemType=="edge") {
+          return `<ul>
+              <li id='hide'>Hide Selected</li>
+            </ul>`;
+        }
+
+
+
+
+
+
       },
       handleMenuClick: (target, item) => {
         const model = item && item.getModel();
@@ -3206,6 +3230,16 @@ self.initGraph = (nodes_, edges_, useLayout=true)=>{
               graph.hideItem(hidNodes[i])
 
             }
+
+            var hidEdges = graph.findAllByState("edge", "focus");
+
+            for (var i = hidEdges.length - 1; i >= 0; i--) {
+              graph.hideItem(hidEdges[i])
+
+            }
+
+            graph.hideItem(item);
+
             //console.log(hiddenItemIds)
             
             break;
