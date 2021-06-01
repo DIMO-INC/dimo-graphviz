@@ -1545,7 +1545,7 @@ self.gqlProjectDataToNode = (project)=>{
         "type": "dimo-node",
         "class": "[Project]",
         "label": project.name,
-        "airtableURL": "https://airtable.com/tblpm4ls9gP94bmGA/viwbmZinIAOULOOCc/" + project.id,
+        "airtableURL": "https://dimo.zone/homepage/projects-listing/?id=" + project.id,
     };
 
     if (project.project_project_types.length) {
@@ -1613,7 +1613,7 @@ self.gqlOrgDataToNode = (org)=>{
         "type": "dimo-node",
         "class":"[Org]",
         "label":org.name,
-        "airtableURL":"https://airtable.com/tblJopLUVAZR2Cfa5/viwuDxJer9n8E5Eze/" + org.id,
+        "airtableURL":"https://dimo.zone/orgs-listing/?id=" + org.id,
     };
 
 
@@ -1688,7 +1688,7 @@ self.gqlFunctionDataToNode = (func)=>{
         "type": "dimo-node",
         "class":"[Function]",
         "label":func.name,
-        "airtableURL":"https://airtable.com/tbluJQFoXFEof7rdM/viwLeV2hJyBobLFZW/" + func.id,
+        "airtableURL":"https://dimo.zone/functions-listing/?id=" + func.id,
     };
  
     if (func.function_function_types.length) {
@@ -1755,7 +1755,7 @@ self.gqlDeviceDataToNode = (device)=>{
         "type": "dimo-node",
         "class":"[Device]",
         "label":device.name,
-        "airtableURL":"https://airtable.com/tblBfeuQ77VxrrGAx/viwrAkUlftN8UCRvK/" + device.id,
+        "airtableURL":"https://dimo.zone/devices-listing/?id=" + device.id,
     };
  
     node.level = 1;
@@ -1907,7 +1907,7 @@ self.gqlPeopleDataToNode = (person)=>{
         "type": "dimo-node",
         "class": "[People]",
         "label": person.full_name,
-        "airtableURL": "https://airtable.com/tbldctvNPqAx3UlIm/viw0OpS8m5ttBgica/" + person.id,
+        "airtableURL": "https://dimo.zone/people-listing/?id=" + person.id,
     };
 
     if (person.people_people_types.length) {
@@ -3156,7 +3156,7 @@ self.initGraph = (nodes_, edges_, useLayout=true)=>{
                 return `<ul>
                   <li id='hide'>Hide Selected</li>
                   <li id='map'>Show in Map</li>
-                  <li id='url'>View in Database</li>
+                  <li id='url'>View in DIMO</li>
                   <li id='load'>Load Connections</li>
                   <li id='align'>Align Selected</li>
                   <li id='group'>Group Selected</li>
@@ -3168,7 +3168,7 @@ self.initGraph = (nodes_, edges_, useLayout=true)=>{
               } else {
                 return `<ul>
                   <li id='hide'>Hide Selected</li>
-                  <li id='url'>View in Database</li>
+                  <li id='url'>View in DIMO</li>
                   <li id='load'>Load Connections</li>
                   <li id='align'>Align Selected</li>
                   <li id='group'>Group Selected</li>
